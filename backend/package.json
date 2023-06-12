@@ -1,11 +1,15 @@
 {
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "build": "./.node_modules/.bin/netlify-lambda build src"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "formidable": "^2.0.1",
+    "netlify-cli": "^15.4.1",
+    "netlify-lambda": "^2.0.16",
+    "serverless-http": "^3.2.0",
     "uuid": "^9.0.0"
   }
 }

@@ -3,17 +3,18 @@ var formidable = require('formidable');
 var cors = require("cors")
 var uuid = require("uuid")
 var path = require("path")
+const serverless = require("serverless-http")
 
 var app = express();
 
 app.use(cors())
 app.use(express.static('./uploads'))
 
-app.get('/api/image/:id', function (req, res){
+app.get('/.netlify/functions/api/image/:id', function (req, res){
     res.sendFile(__dirname + "/uploads/" + req.params.id)
 });
 
-app.post('/api', function (req, res){
+app.post('/.netlify/functions/api', function (req, res){
     var form = new formidable.IncomingForm({
         keepExtensions: true,
         
@@ -39,4 +40,5 @@ app.post('/api', function (req, res){
     
 });
 
-app.listen(3000, () => console.log("server on"));
+// app.listen(3000, () => console.log("server on"));
+module.exports.handler  = serverless(app)
